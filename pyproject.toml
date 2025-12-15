@@ -1,0 +1,28 @@
+[project]
+name = "rss_feed_summary"
+version = "0.1.0"
+description = "Daily RSS fetch, summarize, and email dispatcher"
+readme = "README.md"
+authors = [{ name = "Your Name" }]
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+dependencies = [
+	"feedparser",
+	"beautifulsoup4",
+	"html2text",
+	"jinja2",
+	"pyyaml",
+	"tenacity",
+	"schedule",
+	"requests",
+]
+
+[project.scripts]
+rss-feed-summary = "rss_feed_summary.main:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

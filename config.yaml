@@ -1,0 +1,40 @@
+feeds:
+- https://techcrunch.com/feed/
+- https://arstechnica.com/feed/
+- https://www.engadget.com/rss.xml
+- http://feeds.feedburner.com/TechCrunch/
+- http://feeds.arstechnica.com/arstechnica/index/
+- https://www.wired.com/feed/rss
+- https://blog.google/products/google-cloud/rss/
+- https://cloudblog.withgoogle.com/rss/
+- https://deepmind.google/blog/rss.xml
+- https://aws.amazon.com/about-aws/whats-new/recent/feed/
+- https://aws.amazon.com/blogs/aws/feed/
+- https://aws.amazon.com/blogs/machine-learning/feed/
+- https://azure.microsoft.com/en-us/blog/feed/
+- https://engineering.fb.com/feed/
+- https://openai.com/news/rss.xml
+- https://github.blog/feed/
+- https://stackoverflow.blog/feed/
+- https://medium.com/feed/@netflixtechblog
+- https://medium.com/feed/microsoftazure
+- https://medium.com/feed/google-cloud
+- https://medium.com/feed/pinterest-engineering
+- https://medium.com/feed/@github
+- https://blogs.nvidia.com/feed/
+- https://blog.golang.org/feed.atom
+limits:
+  max_per_feed: 10
+  max_sentences: 2
+email:
+  smtp_host: smtp.example.com
+  smtp_port: 587
+  username: your_user
+  password: your_password
+  from: you@example.com
+  to:
+  - you@example.com
+  subject: Daily RSS Summary
+schedule:
+  hour: 8
+  minute: 0
