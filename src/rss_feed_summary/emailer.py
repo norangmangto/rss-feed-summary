@@ -21,7 +21,12 @@ def render_text(items: List[Dict], subject: str) -> str:
         summary = item.get("summary", "")
         source = item.get("source", "")
         published = item.get("published", "")
-        lines.append(f"- {title} ({source} {published})\n  {link}\n  {summary}")
+        lines.append(f"• {title}")
+        if source or published:
+            lines.append(f"  {source} {published}".strip())
+        lines.append(f"  {link}")
+        if summary:
+            lines.append(f"  {summary}")
         lines.append("")
     return "\n".join(lines)
 

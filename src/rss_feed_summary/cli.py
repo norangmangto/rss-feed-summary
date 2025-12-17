@@ -66,7 +66,7 @@ def run_once(
     feeds = cfg["feeds"]
     limits = cfg.get("limits", {})
     max_per_feed = int(limits.get("max_per_feed", 10))
-    max_sentences = int(limits.get("max_sentences", 2))
+    max_sentences = int(limits.get("max_sentences", 3))
 
     items = collect_entries(feeds, max_per_feed=max_per_feed)
     summarized = summarize_items(items, max_sentences=max_sentences)

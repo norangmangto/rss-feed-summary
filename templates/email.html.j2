@@ -4,19 +4,30 @@
     <meta charset="utf-8" />
     <title>{{ subject }}</title>
     <style>
-      body { font-family: -apple-system, Helvetica, Arial, sans-serif; }
-      .item { margin-bottom: 16px; }
-      .title { font-weight: 600; }
-      .meta { color: #666; font-size: 12px; }
+      body { font-family: -apple-system, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+      .item { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 16px; }
+      .item:last-child { border-bottom: none; }
+      .thumbnail { flex-shrink: 0; width: 120px; height: 120px; object-fit: cover; border-radius: 4px; }
+      .content { flex: 1; }
+      .title { font-weight: 600; font-size: 18px; margin-bottom: 8px; }
+      .title a { color: #0066cc; text-decoration: none; }
+      .title a:hover { text-decoration: underline; }
+      .meta { color: #666; font-size: 13px; margin-bottom: 12px; }
+      .summary { color: #333; font-size: 14px; line-height: 1.6; }
     </style>
   </head>
   <body>
     <h2>{{ subject }}</h2>
     {% for item in items %}
       <div class="item">
-        <div class="title"><a href="{{ item.link }}">{{ item.title }}</a></div>
-        {% if item.published %}<div class="meta">{{ item.published }} — {{ item.source }}</div>{% endif %}
-        <div class="summary">{{ item.summary }}</div>
+        {% if item.thumbnail %}
+        <img src="{{ item.thumbnail }}" alt="" class="thumbnail" />
+        {% endif %}
+        <div class="content">
+          <div class="title"><a href="{{ item.link }}">{{ item.title }}</a></div>
+          {% if item.published %}<div class="meta">{{ item.published }} — {{ item.source }}</div>{% endif %}
+          <div class="summary">{{ item.summary }}</div>
+        </div>
       </div>
     {% endfor %}
   </body>
