@@ -1,5 +1,6 @@
 from typing import List, Dict, Any
 import time
+import hashlib
 import feedparser
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -34,6 +35,41 @@ def extract_thumbnail(entry: Dict[str, Any]) -> str:
                 return link.get("href", "")
     
     return ""
+
+
+def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Remove duplicate entries based on title and link similarity.
+    
+    Uses both exact matching (by URL) and fuzzy title matching to identify
+    and remove duplicate entries that may come from different sources.
+    Keeps the first occurrence of each entry.
+    """
+    seen_links = set()
+    seen_titles = {}
+    deduplicated = []
+    
+    for entry in entries:
+        link = entry.get("link", "").strip()
+        title = entry.get("title", "").strip().lower()
+        
+        # Exact link match (most reliable deduplication)
+        if link and link in seen_links:
+            continue
+        
+        # Title-based deduplication (for feeds that may use different URLs for same article)
+        if title:
+            # Create a normalized title hash for fuzzy matching
+            title_hash = hashlib.md5(title.encode()).hexdigest()
+            if title_hash in seen_titles:
+                continue
+            seen_titles[title_hash] = entry
+        
+        # This entry is unique, add it
+        if link:
+            seen_links.add(link)
+        deduplicated.append(entry)
+    
+    return deduplicated
 
 
 def collect_entries(feed_urls: List[str], max_per_feed: int = 10) -> List[Dict[str, Any]]:

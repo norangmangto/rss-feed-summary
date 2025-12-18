@@ -1,6 +1,6 @@
 from typing import Optional
 from .config import load_config
-from .fetch import collect_entries
+from .fetch import collect_entries, deduplicate_entries
 from .summarize import summarize_items
 from .emailer import render_email, render_text, send_email
 from .health import check_feed_health, print_health_report, get_dead_feeds
@@ -69,6 +69,7 @@ def run_once(
     max_sentences = int(limits.get("max_sentences", 3))
 
     items = collect_entries(feeds, max_per_feed=max_per_feed)
+    items = deduplicate_entries(items)
     summarized = summarize_items(items, max_sentences=max_sentences)
 
     email_cfg = cfg["email"]
