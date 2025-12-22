@@ -3,6 +3,7 @@ import time
 import hashlib
 import feedparser
 from tenacity import retry, stop_after_attempt, wait_exponential
+from datetime import datetime
 
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
@@ -72,6 +73,26 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return deduplicated
 
 
+def sort_by_published_date(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Sort entries by published date in descending order (newest first).
+    
+    Uses the published_parsed timestamp if available, otherwise falls back to
+    the current timestamp. Entries without dates will appear at the end.
+    """
+    def get_sort_key(entry: Dict[str, Any]) -> float:
+        published_parsed = entry.get("published_parsed")
+        if published_parsed:
+            # Convert time.struct_time to timestamp
+            try:
+                return time.mktime(published_parsed)
+            except (ValueError, TypeError, OverflowError):
+                pass
+        # Fallback to current timestamp (will be sorted to the end with negative sign)
+        return entry.get("timestamp", 0)
+    
+    return sorted(entries, key=get_sort_key, reverse=True)
+
+
 def collect_entries(feed_urls: List[str], max_per_feed: int = 10) -> List[Dict[str, Any]]:
     entries: List[Dict[str, Any]] = []
     for url in feed_urls:
@@ -88,11 +109,15 @@ def collect_entries(feed_urls: List[str], max_per_feed: int = 10) -> List[Dict[s
             
             thumbnail = extract_thumbnail(e)
             
+            # Get published_parsed for sorting, if available
+            published_parsed = getattr(e, "published_parsed", None)
+            
             entries.append(
                 {
                     "title": e.get("title", ""),
                     "link": e.get("link", ""),
                     "published": e.get("published", ""),
+                    "published_parsed": published_parsed,
                     "content": content,
                     "summary": e.get("summary", ""),
                     "thumbnail": thumbnail,
@@ -100,4 +125,6 @@ def collect_entries(feed_urls: List[str], max_per_feed: int = 10) -> List[Dict[s
                     "timestamp": time.time(),
                 }
             )
-    return entries
+    
+    # Sort entries by published date in descending order (newest first)
+    return sort_by_published_date(entries)
