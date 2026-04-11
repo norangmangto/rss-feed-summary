@@ -20,6 +20,9 @@ dependencies = [
 [project.scripts]
 rss-feed-summary = "rss_feed_summary.main:main"
 
+[project.optional-dependencies]
+dev = ["pytest"]
+
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
