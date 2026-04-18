@@ -1,0 +1,70 @@
+# Tech News
+https://techcrunch.com/feed/
+https://arstechnica.com/feed/
+https://www.wired.com/feed/rss
+https://www.theverge.com/rss/index.xml
+https://www.engadget.com/rss.xml
+https://thenextweb.com/feed/
+https://venturebeat.com/feed/
+https://www.infoq.com/feed/
+
+# Developer / Programming
+https://stackoverflow.blog/feed/
+https://github.blog/feed/
+https://blog.golang.org/feed.atom
+https://feeds.feedburner.com/RubyInsideFeed
+https://blog.rust-lang.org/feed.xml
+https://www.python.org/jobs/feed/rss/
+https://devblogs.microsoft.com/python/feed/
+https://martinfowler.com/feed.atom
+https://css-tricks.com/feed/
+https://smashingmagazine.com/feed/
+
+# AI / ML
+https://openai.com/news/rss.xml
+https://deepmind.google/blog/rss.xml
+https://blogs.nvidia.com/feed/
+https://huggingface.co/blog/feed.xml
+https://ai.googleblog.com/feeds/posts/default
+https://bair.berkeley.edu/blog/feed.xml
+https://aws.amazon.com/blogs/machine-learning/feed/
+https://towardsdatascience.com/feed
+
+# Cloud & Infrastructure
+https://aws.amazon.com/blogs/aws/feed/
+https://aws.amazon.com/about-aws/whats-new/recent/feed/
+https://azure.microsoft.com/en-us/blog/feed/
+https://cloud.google.com/blog/rss/
+https://blog.cloudflare.com/rss/
+https://engineering.hashicorp.com/feed.xml
+https://kubernetes.io/feed.xml
+https://www.docker.com/blog/feed/
+
+# Engineering Blogs
+https://engineering.fb.com/feed/
+https://netflixtechblog.com/feed
+https://medium.com/feed/@netflixtechblog
+https://engineering.atspotify.com/feed/
+https://slack.engineering/feed/
+https://dropbox.tech/feed
+https://medium.com/feed/airbnb-engineering
+https://medium.com/feed/uber-engineering
+https://engineering.linkedin.com/blog.rss.html
+https://engineering.shopify.com/blogs/engineering.atom
+https://medium.com/feed/pinterest-engineering
+https://medium.com/feed/lyft-engineering
+https://tech.twitter.com/en/blog.rss
+https://medium.com/feed/swlh
+
+# Security
+https://krebsonsecurity.com/feed/
+https://www.schneier.com/feed/atom/
+https://feeds.feedburner.com/TheHackersNews
+https://www.darkreading.com/rss.xml
+
+# Open Source & Misc
+https://lwn.net/headlines/rss
+https://www.phoronix.com/rss.php
+https://news.ycombinator.com/rss
+https://lobste.rs/rss
+https://www.indiehackers.com/feed.rss
