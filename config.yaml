@@ -1,0 +1,29 @@
+feeds:
+- https://blog.google/products/google-cloud/rss/
+- https://cloudblog.withgoogle.com/rss/
+- https://deepmind.google/blog/rss.xml
+- https://aws.amazon.com/about-aws/whats-new/recent/feed/
+- https://aws.amazon.com/blogs/aws/feed/
+- https://aws.amazon.com/blogs/machine-learning/feed/
+- https://azure.microsoft.com/en-us/blog/feed/
+- https://engineering.fb.com/feed/
+- https://openai.com/news/rss.xml
+- https://github.blog/feed/
+- https://blogs.nvidia.com/feed/
+- https://astral.sh/blog/
+- https://duckdb.org/news/
+- https://blog.golang.org/feed.atom
+limits:
+  max_per_feed: 30
+  max_sentences: 10
+email:
+    smtp_host: smtp.gmail.com
+    smtp_port: 587
+    username: norangmangto@gmail.com
+    password: yauzwyzixiggmcif
+    from: norangmangto@gmail.com
+    to: [norangmangto@gmail.com]
+    subject: Daily RSS Summary
+schedule:
+  hour: 8
+  minute: 0

@@ -61,3 +61,14 @@ Keep `config.yaml` out of git — it contains SMTP credentials.
 ## Deduplication
 
 Items from different feeds with identical content are deduplicated before rendering (see commit `ca8d85e`).
+
+## Caching / Seen-item Filtering
+
+`cache.py` maintains a SQLite DB (default: `~/.cache/rss-feed-summary/seen.db`) keyed on article link. On each `once` run, only items not previously seen are summarized and emailed. Already-seen items are silently skipped; if nothing is new the run exits early with a message.
+
+Override the DB path in `config.yaml`:
+
+```yaml
+cache:
+  db_path: /path/to/seen.db
+```

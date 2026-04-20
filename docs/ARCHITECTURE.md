@@ -12,12 +12,12 @@ RSS Feed Summary is a Python-based application that automates the daily process 
 │                    (CLI or launchd / cron)                      │
 └────────────┬────────────────────────────────────────────────────┘
              │
-             ├─────────────────────────────────────────┐
-             │                                         │
+             ├─────────────────────────────────┐
+             │                                 │
         ┌────▼──────┐  ┌────────────┐  ┌──────────────┐
-        │   once     │  │  schedule  │  │    check     │
-        │  (email)   │  │ (daemon)   │  │   (health)   │
-        └────┬──────┘  └────────────┘  └──────┬───────┘
+        │   once    │  │  schedule  │  │    check     │
+        │  (email)  │  │  (daemon)  │  │   (health)   │
+        └────┬──────┘  └────────────┘  └───────┬──────┘
              │                                 │
              └──────────────┬──────────────────┘
                             │
@@ -26,9 +26,9 @@ RSS Feed Summary is a Python-based application that automates the daily process 
                     │  Load YAML cfg │
                     └────────────────┘
                             │
-         ┌──────────────────┼──────────────────┐
-         │                  │                  │
-    ┌────▼─────┐    ┌──────▼──────┐    ┌─────▼──────┐
+         ┌──────────────────┼─────────────────┐
+         │                  │                 │
+    ┌────▼──────┐    ┌──────▼──────┐    ┌─────▼──────┐
     │ fetch.py  │    │summarize.py │    │ emailer.py │
     │           │    │             │    │            │
     │ • Extract │    │ • Clean HTML│    │ • Render   │
@@ -37,13 +37,13 @@ RSS Feed Summary is a Python-based application that automates the daily process 
     │   content │    │ • Extract   │    │   SMTP     │
     │ • Extract │    │   summary   │    │            │
     │   images  │    │             │    │            │
-    └──────────┘    └─────────────┘    └────────────┘
+    └───────────┘    └─────────────┘    └────────────┘
          │                                      │
          └──────────────┬───────────────────────┘
                         │
                  ┌──────▼──────┐
-                 │ Template    │
-                 │ (Jinja2)    │
+                 │   Template  │
+                 │   (Jinja2)  │
                  │             │
                  │ email.html  │
                  │ Renders     │
@@ -52,7 +52,7 @@ RSS Feed Summary is a Python-based application that automates the daily process 
                  └─────────────┘
                         │
                  ┌──────▼──────┐
-                 │   health.py │
+                 │  health.py  │
                  │  (optional) │
                  │             │
                  │ • Check URL │

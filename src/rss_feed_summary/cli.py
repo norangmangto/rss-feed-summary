@@ -5,6 +5,7 @@ from .summarize import summarize_items
 from .emailer import render_email, render_text, send_email
 from .health import check_feed_health, print_health_report, get_dead_feeds
 from .scheduler import run_daily
+from .cache import DEFAULT_DB_PATH, init_db, filter_new_items, mark_seen
 from datetime import date
 import yaml
 
@@ -67,10 +68,23 @@ def run_once(
     limits = cfg.get("limits", {})
     max_per_feed = int(limits.get("max_per_feed", 10))
     max_sentences = int(limits.get("max_sentences", 3))
+    db_path = cfg.get("cache", {}).get("db_path", DEFAULT_DB_PATH)
 
     items = collect_entries(feeds, max_per_feed=max_per_feed)
     items = deduplicate_entries(items)
-    summarized = summarize_items(items, max_sentences=max_sentences)
+
+    conn = init_db(db_path)
+    new_items = filter_new_items(conn, items)
+
+    if not new_items:
+        print("No new items since last run.")
+        conn.close()
+        return
+
+    mark_seen(conn, new_items)
+    conn.close()
+
+    summarized = summarize_items(new_items, max_sentences=max_sentences)
 
     email_cfg = cfg["email"]
     subject = email_cfg.get("subject", "Daily RSS Summary")
